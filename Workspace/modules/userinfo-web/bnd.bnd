@@ -1,0 +1,4 @@
+Bundle-Name: userinfo-web
+Bundle-SymbolicName: com.liferay.docs.userinfo.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.docs.userinfo.portlet.constants

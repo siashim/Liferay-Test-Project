@@ -1,0 +1,4 @@
+Bundle-Name: newaccount-web
+Bundle-SymbolicName: com.liferay.docs.newaccount.portlet
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.docs.newaccount.portlet.constants
