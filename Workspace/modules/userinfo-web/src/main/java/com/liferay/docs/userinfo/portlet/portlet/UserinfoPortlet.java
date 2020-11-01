@@ -1,12 +1,14 @@
 package com.liferay.docs.userinfo.portlet.portlet;
 
 import com.liferay.docs.userinfo.portlet.constants.UserinfoPortletKeys;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
@@ -38,13 +40,23 @@ public class UserinfoPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 		User user = themeDisplay.getRealUser(); 	
-		String[] userInfo = new String[4];
+		String[] userInfo = new String[6];
 		String output = "";
 
 		userInfo[0] = "User ID: " + Long.toString(user.getUserId());
 		userInfo[1] = "Email: " + user.getEmailAddress();
 		userInfo[2] = "Name: " + user.getFullName();
 		userInfo[3] = "Screen Name: " + user.getScreenName();
+		try {			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(user.getBirthday());
+			
+			userInfo[4] = "Date of Birth: " + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.YEAR) ;
+			userInfo[5] = "Gender: " +  (user.getMale() ? "Male" : "Female");
+		} 
+		catch (PortalException e) {
+            System.out.println(e);   
+		}
 
 		for (String line : userInfo) {
 			output += line + "<br/>";

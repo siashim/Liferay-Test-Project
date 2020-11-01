@@ -56,6 +56,7 @@ public class NewaccountPortlet extends MVCPortlet {
         String lastName = ParamUtil.getString(request, "last name");
         String screenName = ParamUtil.getString(request, "screen name");
         String email = ParamUtil.getString(request, "email");
+        String password = ParamUtil.getString(request, "password");
         String dob = ParamUtil.getString(request, "date of birth");
         String gender = ParamUtil.getString(request, "gender");
 
@@ -66,7 +67,7 @@ public class NewaccountPortlet extends MVCPortlet {
         cal.add(Calendar.MONTH, -1);
                 
         try { 
-        	UserLocalServiceUtil.addUser(user.getUserId(), themeDisplay.getCompanyId(), true, "", "", false,
+        	UserLocalServiceUtil.addUser(user.getUserId(), themeDisplay.getCompanyId(), false, password, password, false,
         			screenName, email, 0, "",  LocaleUtil.US, firstName, "", lastName, 0, 0, gender.equals("M"), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH),
         			cal.get(Calendar.YEAR), "", groupID, user.getOrganizationIds(), roleID, user.getUserGroupIds(), false, serviceContext);
 		  } 

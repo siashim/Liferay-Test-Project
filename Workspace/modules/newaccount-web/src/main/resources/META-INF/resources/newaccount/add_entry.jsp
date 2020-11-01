@@ -13,13 +13,14 @@
 		<aui:input name="first name" />
 		<aui:input name="last name" />
 		<aui:input name="screen name" />
+		<aui:input name="email">
+			<aui:validator name="email" />
+	  	</aui:input>
+	  	<aui:input name="password" type="password" />
 		<aui:select name="gender">
     		<option value="M">Male</option>
     		<option value="F">Female</option>
   		</aui:select>
-		<aui:input name="email">
-			<aui:validator name="email" />
-	  	</aui:input>
 		<aui:input name="date of birth" type="date">
 			<aui:validator name="date" />
 		</aui:input>
