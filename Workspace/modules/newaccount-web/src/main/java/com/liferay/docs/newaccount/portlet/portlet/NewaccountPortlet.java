@@ -7,6 +7,8 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -44,7 +46,7 @@ public class NewaccountPortlet extends MVCPortlet {
 		
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
 
-		User user = themeDisplay.getRealUser(); 
+		User currentUser = themeDisplay.getRealUser(); 
 
 		long[] groupID = new long[1];
 		long[] roleID = new long[1];
@@ -67,12 +69,14 @@ public class NewaccountPortlet extends MVCPortlet {
         cal.add(Calendar.MONTH, -1);
                 
         try { 
-        	UserLocalServiceUtil.addUser(user.getUserId(), themeDisplay.getCompanyId(), false, password, password, false,
+        	UserLocalServiceUtil.addUser(currentUser.getUserId(), themeDisplay.getCompanyId(), false, password, password, false,
         			screenName, email, 0, "",  LocaleUtil.US, firstName, "", lastName, 0, 0, gender.equals("M"), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH),
-        			cal.get(Calendar.YEAR), "", groupID, user.getOrganizationIds(), roleID, user.getUserGroupIds(), false, serviceContext);
-		  } 
-		  catch (PortalException e) {
-	            System.out.println(e);   
-		  }
+        			cal.get(Calendar.YEAR), "", groupID, currentUser.getOrganizationIds(), roleID, currentUser.getUserGroupIds(), false, serviceContext);
+           
+        	SessionMessages.add(request, "success");
+        } 
+        catch (PortalException e) {
+        	SessionErrors.add(request, "error"); 
+		}
 	}
 }

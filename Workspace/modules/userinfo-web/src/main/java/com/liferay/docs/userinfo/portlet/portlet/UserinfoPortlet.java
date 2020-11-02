@@ -39,21 +39,22 @@ public class UserinfoPortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)  throws IOException, PortletException {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-		User user = themeDisplay.getRealUser(); 	
+		User currentUser = themeDisplay.getRealUser(); 	
 		String[] userInfo = new String[6];
 		String output = "";
 
-		userInfo[0] = "User ID: " + Long.toString(user.getUserId());
-		userInfo[1] = "Email: " + user.getEmailAddress();
-		userInfo[2] = "Name: " + user.getFullName();
-		userInfo[3] = "Screen Name: " + user.getScreenName();
+		userInfo[0] = "User ID: " + Long.toString(currentUser.getUserId());
+		userInfo[1] = "Email: " + currentUser.getEmailAddress();
+		userInfo[2] = "Name: " + currentUser.getFullName();
+		userInfo[3] = "Screen Name: " + currentUser.getScreenName();
+		
 		try {			
 			Calendar cal = Calendar.getInstance();
-			cal.setTime(user.getBirthday());
+			cal.setTime(currentUser.getBirthday());
 			
 			userInfo[4] = "Date of Birth: " + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cal.get(Calendar.YEAR) ;
-			userInfo[5] = "Gender: " +  (user.getMale() ? "Male" : "Female");
-		} 
+			userInfo[5] = "Gender: " +  (currentUser.getMale() ? "Male" : "Female");
+		}
 		catch (PortalException e) {
             System.out.println(e);   
 		}
