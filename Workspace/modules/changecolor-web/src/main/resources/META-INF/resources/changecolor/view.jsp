@@ -14,6 +14,18 @@
 		changeColor(color);
 	}
 	
+	function changeElementColors(backgroundColor, textColor, elementClass) {
+		var elements = document.getElementsByClassName(elementClass);
+				
+		for(var i = 0; i < elements.length; i++){
+			if (backgroundColor != null)
+				elements[i].style.backgroundColor = backgroundColor;
+			
+			if (textColor != null)
+				elements[i].style.color = textColor;
+		}	
+	}
+	
 	function changeColor(color) {		
 		
 		var textColor = "";
@@ -33,65 +45,30 @@
 				break;
 		}
 		
-		document.body.style.background = backgroundColor;
+		document.body.style.background = backgroundColor;		
 		
 		document.getElementById('footer').style.backgroundColor = backgroundColor;
 		
-		var navbarTopElements = document.getElementsByClassName('navbar navbar-classic navbar-top py-3');
+		changeElementColors(backgroundColor, null, 'navbar navbar-classic navbar-top py-3');
 		
-			for(var i = 0; i < navbarTopElements.length; i++){
-				navbarTopElements[i].style.backgroundColor = backgroundColor;
-			}
+		changeElementColors(backgroundColor, null, 'navbar navbar-classic navbar-expand-md navbar-light pb-3');
 			
-		var navbarLightElements = document.getElementsByClassName('navbar navbar-classic navbar-expand-md navbar-light pb-3');
+		changeElementColors(null, textColor, 'text-truncate');
+
+		changeElementColors(backgroundColor, textColor, 'portlet-content portlet-content-editable');
+
+		changeElementColors(backgroundColor, textColor, 'portlet-content');
+
+		changeElementColors(null, textColor, 'portlet-title-text portlet-title-editable');
 		
-			for(var i = 0; i < navbarLightElements.length; i++){
-				navbarLightElements[i].style.backgroundColor = backgroundColor;
-			}
+		changeElementColors(null, textColor, 'portlet-title-text');
 		
-		var textTruncateElements = document.getElementsByClassName('text-truncate');
-		
-			for(var i = 0; i < textTruncateElements.length; i++){
-				textTruncateElements[i].style.color = textColor;
-			}
+		changeElementColors(null, textColor, 'control-label');
 			
-		var editablePortletElements = document.getElementsByClassName('portlet-content portlet-content-editable');
-		
-			for(var i = 0; i < editablePortletElements.length; i++){
-				editablePortletElements[i].style.backgroundColor = backgroundColor;
-				editablePortletElements[i].style.color = textColor;
-			}
-			
-		var portletElements = document.getElementsByClassName('portlet-content');
-			
-			for(var i = 0; i < portletElements.length; i++){
-				portletElements[i].style.backgroundColor = backgroundColor;
-				portletElements[i].style.color = textColor;
-			}
-			
-		var editablePortletTextElements = document.getElementsByClassName('portlet-title-text portlet-title-editable');
-			
-			for(var i = 0; i < editablePortletTextElements.length; i++){
-				editablePortletTextElements[i].style.color = textColor;
-			}
-			
-		var PortletTextElements = document.getElementsByClassName('portlet-title-text');
-			
-			for(var i = 0; i < PortletTextElements.length; i++){
-				PortletTextElements[i].style.color = textColor;
-			}
-							
-		var fieldLabelElements = document.getElementsByClassName('control-label');
-		
-			for(var i = 0; i < fieldLabelElements.length; i++){
-				fieldLabelElements[i].style.color = textColor;
-			}
-			
-		var containerElements = document.getElementsByClassName('container');
-			
-			for(var i = 0; i < containerElements.length; i++){
-				containerElements[i].style.backgroundColor = backgroundColor;
-			}
+		changeElementColors(backgroundColor, null, 'container');
+				
+		changeElementColors(backgroundColor, null, 'management-bar management-bar-light navbar navbar-expand-md');
+
 	}
 	
 	window.onload=loadColor;
