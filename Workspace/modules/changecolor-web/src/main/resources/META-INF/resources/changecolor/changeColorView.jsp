@@ -10,8 +10,10 @@
 	}
 	
 	function saveColor(color) {
-		localStorage.setItem("color", color);
-		changeColor(color);
+		if (color !== "empty") {
+			localStorage.setItem("color", color);
+			changeColor(color);
+		}
 	}
 	
 	function changeElementColors(backgroundColor, textColor, elementClass) {
@@ -41,6 +43,7 @@
 		    	break;
 		  	case "green":
 		  	case "blue":
+		  	case "purple":	
 				textColor = "white";
 				break;
 		}
@@ -64,10 +67,12 @@
 		changeElementColors(null, textColor, 'portlet-title-text');
 		
 		changeElementColors(null, textColor, 'control-label');
-			
+		
 		changeElementColors(backgroundColor, null, 'container');
-				
+									
 		changeElementColors(backgroundColor, null, 'management-bar management-bar-light navbar navbar-expand-md');
+		
+		changeElementColors(null, textColor, 'taglib-icon-label');
 
 	}
 	
@@ -77,11 +82,14 @@
 
 
 <aui:select name="color" id="colorDropdown" onchange="saveColor(this.value);">
-	<option value="default color"> </option>
+	<option value="empty"> </option>
 	<option value="default color">Default Color</option>
 	<option value="match color">Match Color</option>
+	<option value="blue">Blue</option>
+	<option value="gold">Gold</option>
+	<option value="green">Green</option>
+	<option value="orange">Orange</option>
+	<option value="hotpink">Pink</option>
+	<option value="purple">Purple</option>
     <option value="red">Red</option>
-    <option value="blue">Blue</option>
-    <option value="orange">Orange</option>
-    <option value="green">Green</option>		
 </aui:select>
