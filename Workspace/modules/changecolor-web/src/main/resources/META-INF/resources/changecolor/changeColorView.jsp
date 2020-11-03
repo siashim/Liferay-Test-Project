@@ -69,9 +69,7 @@
 		changeElementColors(null, textColor, 'control-label');
 		
 		changeElementColors(backgroundColor, null, 'container');
-									
-		changeElementColors(backgroundColor, null, 'management-bar management-bar-light navbar navbar-expand-md');
-		
+											
 		changeElementColors(null, textColor, 'taglib-icon-label');
 
 	}
