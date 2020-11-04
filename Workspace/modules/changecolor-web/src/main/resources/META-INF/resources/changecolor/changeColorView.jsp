@@ -1,17 +1,16 @@
 <%@ include file="/init.jsp" %>
 
-
 <script>
 	function loadColor() {
-		var savedVariable = localStorage.getItem("color");
+		var savedVariable = localStorage.getItem(${userid} + "-color");
 		if (savedVariable != null) {
 			changeColor(savedVariable);
 	    }
 	}
 	
-	function saveColor(color) {
-		if (color !== "empty") {
-			localStorage.setItem("color", color);
+	function saveColor(color, userid) {
+		if (color !== "empty" && ${userid} != null) {
+			localStorage.setItem(${userid} + "-color", color);
 			changeColor(color);
 		}
 	}
@@ -19,7 +18,7 @@
 	function changeElementColors(backgroundColor, textColor, elementClass) {
 		var elements = document.getElementsByClassName(elementClass);
 				
-		for(var i = 0; i < elements.length; i++){
+		for(let i = 0; i < elements.length; i++) {
 			if (backgroundColor != null)
 				elements[i].style.backgroundColor = backgroundColor;
 			
@@ -71,13 +70,14 @@
 		changeElementColors(backgroundColor, null, 'container');
 											
 		changeElementColors(null, textColor, 'taglib-icon-label');
-
+		
 	}
 	
 	window.onload=loadColor;
 </script>
 
 
+<% String userid = (String) request.getAttribute("userid"); %>
 
 <aui:select name="color" id="colorDropdown" onchange="saveColor(this.value);">
 	<option value="empty"> </option>

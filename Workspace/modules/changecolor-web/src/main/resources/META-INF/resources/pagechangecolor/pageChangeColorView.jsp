@@ -3,16 +3,16 @@
 
 <script>
 	function loadColor() {
-		var savedVariable = localStorage.getItem("color");
+		var savedVariable = localStorage.getItem(${userid} + "-color");
 		if (savedVariable != null) {
 			changeColor(savedVariable);
-	    }
+    	}
 	}
 		
 	function changeElementColors(backgroundColor, textColor, elementClass) {
 		var elements = document.getElementsByClassName(elementClass);
 				
-		for(var i = 0; i < elements.length; i++){
+		for(let i = 0; i < elements.length; i++) {
 			if (backgroundColor != null)
 				elements[i].style.backgroundColor = backgroundColor;
 			
@@ -70,5 +70,7 @@
 	window.onload=loadColor;
 </script>
 
+
+<% String userid = (String) request.getAttribute("userid"); %>
 
 <div hidden></div>

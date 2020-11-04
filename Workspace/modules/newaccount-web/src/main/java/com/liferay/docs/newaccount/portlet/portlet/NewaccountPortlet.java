@@ -41,8 +41,7 @@ import org.osgi.service.component.annotations.Component;
 	service = Portlet.class
 )
 public class NewaccountPortlet extends MVCPortlet {
-	public void addEntry(ActionRequest request, ActionResponse response)
-            throws PortalException {
+	public void addEntry(ActionRequest request, ActionResponse response) throws PortalException {
 		
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(WebKeys.THEME_DISPLAY);
 

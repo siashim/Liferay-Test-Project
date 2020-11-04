@@ -1,5 +1,5 @@
-<%@ include file="../init.jsp" %>
+<%@ include file="/init.jsp" %>
 
-<% 	String info = (String) request.getAttribute("info");%>
+<% 	String info = (String) request.getAttribute("info"); %>
 
 ${info}
